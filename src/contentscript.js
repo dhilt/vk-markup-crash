@@ -15,10 +15,20 @@ var vk_markup_crash = {
 		document.addEventListener('DOMSubtreeModified', onModifiedDOM, false);
 	},
 
+	isHeader: true,
+
 	processHeader: function (header) {
+		var self = this;
 		window.onscroll = function() {
 			var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-			header.style.display = scrolled > 0 ? 'none' : 'block';
+			if(self.isHeader && scrolled > 0) {
+				self.isHeader = false;
+				header.style.display = 'none';
+			}
+			else if (!self.isHeader && scrolled === 0) {
+				self.isHeader = true;
+				header.style.display = 'block';	
+			}
 		}
 	},
 
