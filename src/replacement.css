@@ -1,0 +1,51 @@
+.feed_notif_block.page_block._block {
+	display: none;
+}
+.ui_toggler_wrap.hot {
+	display: none;
+}
+.wall_module .feed_row {
+	margin-top: -7px;
+}
+.wall_module .post_header {
+	padding: 5px 5px 0;
+}
+.wall_module .wall_text {
+	padding: 0 8px 5px;
+}
+.page_post_sized_thumbs {
+	padding: 3px 0 0;
+}
+.post_full_like_wrap {
+	padding: 0; margin: 0 3px; border: 0;
+}
+.post_full_like_wrap .post_full_like {
+	float: right;
+}
+.post_full_like_wrap .reply_link_wrap {
+	float: left; padding: 5px 2px;
+}
+.post_full_like_wrap .post_like, .post_full_like_wrap .post_share {
+	padding: 0;
+}
+.copy_quote .wall_post_text {
+	padding-top: 0;
+}
+.wall_module .replies_list {
+	border: 0;
+}
+.wr_header {
+	margin: 0 7px;
+}
+.replies_open, .wr_header {
+	line-height: 27px;
+}
+.wall_module .reply .reply_wrap {
+	padding: 8px 0;
+}
+.wd_lnk {
+	color: #a7a5a5; font-size: 12px;
+}
+.wall_module .reply_box_open .submit_post_field, .wall_module .reply_box_open .submit_post_field~.placeholder .ph_input {
+	min-height: 0;
+}

@@ -18,5 +18,8 @@
 			"all_frames": false
 		}
 	],
+	"web_accessible_resources": [
+			"replacement.css"
+	],	
 	"manifest_version": 2
 }
