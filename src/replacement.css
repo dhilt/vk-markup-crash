@@ -1,3 +1,6 @@
+body {
+	background: #f7f7f7;
+}
 .feed_notif_block.page_block._block {
 	display: none;
 }
@@ -8,7 +11,7 @@
 	margin-top: -7px;
 }
 .wall_module .post_header {
-	padding: 5px 5px 0;
+	padding: 10px 10px 5px;
 }
 .wall_module .wall_text {
 	padding: 0 8px 5px;
@@ -17,7 +20,10 @@
 	padding: 3px 0 0;
 }
 .post_full_like_wrap {
-	padding: 0; margin: 0 3px; border: 0;
+	margin: 0 7px;
+	border: 0;
+	padding-bottom: 5px;
+	padding-top: 3px;
 }
 .post_full_like_wrap .post_full_like {
 	float: right;
@@ -56,4 +62,12 @@
 .wall_module .wall_text .page_media_thumbed_link:last-child {
 	margin-bottom: 0px;
 	margin-top: 5px;	
+}
+
+/*share and like links/icons*/
+.wall_module .post_like_link, .wall_module .post_share_link {
+	display: none;
+}
+.wall_module .post_share_icon {
+    margin-top: 1px;
 }
