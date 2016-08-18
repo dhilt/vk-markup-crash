@@ -49,3 +49,11 @@
 .wall_module .reply_box_open .submit_post_field, .wall_module .reply_box_open .submit_post_field~.placeholder .ph_input {
 	min-height: 0;
 }
+.wall_module .wall_text .page_media_poll_wrap:last-child {
+	margin-bottom: 0px;
+	margin-top: 5px;
+}
+.wall_module .wall_text .page_media_thumbed_link:last-child {
+	margin-bottom: 0px;
+	margin-top: 5px;	
+}
