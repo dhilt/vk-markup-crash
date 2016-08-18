@@ -1,12 +1,6 @@
 body {
 	background: #f7f7f7;
 }
-.feed_notif_block.page_block._block {
-	display: none;
-}
-.ui_toggler_wrap.hot {
-	display: none;
-}
 .wall_module .feed_row {
 	margin-top: -7px;
 }
@@ -62,6 +56,18 @@ body {
 .wall_module .wall_text .page_media_thumbed_link:last-child {
 	margin-bottom: 0px;
 	margin-top: 5px;	
+}
+
+/*blocks to permanent hide*/
+#feed_recommends {
+	display: none;
+}
+#feed_filters {
+	display: none;
+}
+.right_list_header, #group_recom_wrap {
+	/*recommended communities*/
+	display: none;
 }
 
 /*share and like links/icons*/
