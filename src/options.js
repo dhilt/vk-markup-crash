@@ -6,6 +6,11 @@
   const vk_markup_crash_options = {
 
     options: [{
+      id: 'header',
+      type: 'checkbox',
+      value: true,
+      text: 'unfix header'
+    }, {
       id: 'ads',
       type: 'checkbox',
       value: true,
@@ -19,7 +24,7 @@
       id: 'wide_layout',
       type: 'checkbox',
       value: true,
-      text: 'wide layout'
+      text: 'make layout wider'
     }, {
       id: 'margins_and_paddings',
       type: 'checkbox',
