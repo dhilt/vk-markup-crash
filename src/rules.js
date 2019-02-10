@@ -2,7 +2,8 @@ const RULES = {
     ADDS: `
 ._ads_block_data_w, .ads_left, .ads_ads_box {
     display: none !important;
-}`,
+}
+`,
     ROUND_ICONS: `
 .top_profile_img,
 .chat_tab_img,
@@ -35,5 +36,14 @@ const RULES = {
 .submit_post_box .thumb_off, .submit_post_box .thumb_on
 {
     border-radius: 0 !important;
-}`
+}
+`,
+	WIDE_LAYOUT: `
+#page_layout {
+	width: 1160px !important;
+}
+#page_body {
+	width: 995px !important;
+}
+`,
 };

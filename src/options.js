@@ -15,6 +15,11 @@
       type: 'checkbox',
       value: true,
       text: 'abandon round icons'
+    }, {
+      id: 'wide_layout',
+      type: 'checkbox',
+      value: true,
+      text: 'wide layout'
     }],
 
     saveOptions: function () {
@@ -36,9 +41,8 @@
             option.value = opt.value
           }
         })
-      } else {
-        this.saveOptions();
       }
+      this.saveOptions();
     },
 
     makeCheckbox: function (option) {

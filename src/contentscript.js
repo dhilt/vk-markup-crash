@@ -24,6 +24,9 @@
         if (this.getOption(options, 'round_icons')) {
           this.addCss(RULES.ROUND_ICONS)
         }
+        if (this.getOption(options, 'wide_layout')) {
+          this.addCss(RULES.WIDE_LAYOUT)
+        }
       }
     },
 
