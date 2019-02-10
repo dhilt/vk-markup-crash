@@ -10,6 +10,11 @@
       type: 'checkbox',
       value: true,
       text: 'remove ads'
+    }, {
+      id: 'round_icons',
+      type: 'checkbox',
+      value: true,
+      text: 'abandon round icons'
     }],
 
     saveOptions: function () {
@@ -31,6 +36,8 @@
             option.value = opt.value
           }
         })
+      } else {
+        this.saveOptions();
       }
     },
 
