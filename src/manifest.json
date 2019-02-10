@@ -1,25 +1,32 @@
 {
-	"name": "VK markup crush",
-	"short_name": "VK re-design",
-	"version": "0.0.3",
-	"description": "Destroy new VK' design!",
-	"icons": {
-		"48": "vk-markup-crush-icon48.png",
-		"64": "vk-markup-crush-icon64.png",
-		"128": "vk-markup-crush-icon128.png"
-	},
-	"content_scripts": [
-		{
-			"matches": [
-				"https://vk.com/*"
-			],
-			"js": ["contentscript.js"],
-			"run_at": "document_start",
-			"all_frames": false
-		}
-	],
-	"web_accessible_resources": [
-			"replacement.css"
-	],	
-	"manifest_version": 2
+  "name": "VK markup crush",
+  "short_name": "VK re-design",
+  "version": "0.0.3",
+  "description": "Destroy new VK' design!",
+  "icons": {
+    "48": "vk-markup-crush-icon48.png",
+    "64": "vk-markup-crush-icon64.png",
+    "128": "vk-markup-crush-icon128.png"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://vk.com/*"
+      ],
+      "js": [
+        "contentscript.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    "replacement.css",
+    "options.html"
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "manifest_version": 2
 }
