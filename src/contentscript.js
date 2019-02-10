@@ -18,6 +18,9 @@
 
     processStorageOptions: function (options) {
       if (options) {
+        if (this.getOption(options, 'header')) {
+          this.processHeader()
+        }
         if (this.getOption(options, 'ads')) {
           this.addCss(RULES.ADDS)
         }
@@ -26,6 +29,9 @@
         }
         if (this.getOption(options, 'wide_layout')) {
           this.addCss(RULES.WIDE_LAYOUT)
+        }
+        if (this.getOption(options, 'margins_and_paddings')) {
+          this.addCss(RULES.MARGINS_AND_PADDINGS)
         }
       }
     },
@@ -42,50 +48,31 @@
       (document.head || document.documentElement).appendChild(css)
     },
 
-    injectStyle: function () {
-      // base styles
-      var style = document.createElement('link')
-      style.rel = 'stylesheet'
-      style.type = 'text/css'
-      style.href = chrome.extension.getURL('replacement.css');
-      (document.head || document.documentElement).appendChild(style)
-
-      // optioned styles
-      this.getStorageDataAsync().then(
-        this.processStorageOptions.bind(this)
-      )
-    },
-
-    isHeader: true,
-
-    processHeader: function (header) {
-      var self = this
-      window.onscroll = function () {
-        var scrolled = window.pageYOffset || document.documentElement.scrollTop
-        if (self.isHeader && scrolled > 0) {
-          self.isHeader = false
-          header.style.display = 'none'
-        }
-        else if (!self.isHeader && scrolled === 0) {
-          self.isHeader = true
-          header.style.display = 'block'
-        }
-      }
-    },
-
-    processDOM: function () {
+    processHeader: function () {
+      let isHeader = true;
       this.timerId = setInterval(() => {
         var header = document.getElementById('page_header_cont')
         if (header) {
           clearInterval(this.timerId)
-          this.processHeader(header)
+          window.onscroll = () => {
+            var scrolled = window.pageYOffset || document.documentElement.scrollTop
+            if (isHeader && scrolled > 0) {
+              isHeader = false
+              header.style.display = 'none'
+            }
+            else if (!isHeader && scrolled === 0) {
+              isHeader = true
+              header.style.display = 'block'
+            }
+          }
         }
       }, 75)
     },
 
     run: function () {
-      this.injectStyle()
-      this.processDOM()
+      this.getStorageDataAsync().then(
+        this.processStorageOptions.bind(this)
+      )
     }
   }
 
