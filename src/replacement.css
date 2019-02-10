@@ -1,3 +1,11 @@
+
+#page_layout {
+	width: 1160px !important;
+}
+#page_body {
+	width: 995px !important;
+}
+
 body {
 	background: #f7f7f7;
 }
@@ -55,6 +63,9 @@ body {
 .wall_module .wall_text .page_media_thumbed_link:last-child {
 	margin-bottom: 0px !important;
 	margin-top: 5px !important;
+}
+#narrow_column {
+	position: inherit !important;
 }
 
 /*blocks to permanent hide*/
