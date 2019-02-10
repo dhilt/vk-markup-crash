@@ -15,6 +15,7 @@
         "https://vk.com/*"
       ],
       "js": [
+      	"rules.js",
         "contentscript.js"
       ],
       "run_at": "document_start",
