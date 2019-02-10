@@ -23,7 +23,6 @@
     }
   ],
   "web_accessible_resources": [
-    "replacement.css",
     "options.html"
   ],
   "permissions": [

@@ -20,6 +20,11 @@
       type: 'checkbox',
       value: true,
       text: 'wide layout'
+    }, {
+      id: 'margins_and_paddings',
+      type: 'checkbox',
+      value: true,
+      text: 'reduce margins and paddings'
     }],
 
     saveOptions: function () {
