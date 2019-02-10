@@ -142,8 +142,3 @@ body {
 {
     border-radius: 0 !important;
 }
-
-/*ads*/
-._ads_block_data_w, .ads_left, .ads_ads_box {
-	display: none !important;
-}
