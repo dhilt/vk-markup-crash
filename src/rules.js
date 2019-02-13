@@ -1,4 +1,4 @@
-const RULES = {
+const VK_MARKUP_CRASH_RULES = {
     ADDS: `
 ._ads_block_data_w, .ads_left, .ads_ads_box {
     display: none !important;
