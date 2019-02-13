@@ -2,40 +2,14 @@
 
   const LS = localStorage
   const LSToken = 'vk_markup_crash_options'
+  const SETTINGS = VK_MARKUP_CRASH_SETTINGS
 
   const vk_markup_crash_options = {
 
-    options: [{
-      id: 'header',
-      type: 'checkbox',
-      value: true,
-      text: 'unfix header'
-    }, {
-      id: 'ads',
-      type: 'checkbox',
-      value: true,
-      text: 'remove ads'
-    }, {
-      id: 'round_icons',
-      type: 'checkbox',
-      value: true,
-      text: 'abandon round icons'
-    }, {
-      id: 'wide_layout',
-      type: 'checkbox',
-      value: true,
-      text: 'make layout wider'
-    }, {
-      id: 'margins_and_paddings',
-      type: 'checkbox',
-      value: true,
-      text: 'reduce margins and paddings'
-    }],
-
     saveOptions: function () {
-      LS[LSToken] = JSON.stringify(this.options)
+      LS[LSToken] = JSON.stringify(SETTINGS)
       chrome.storage.local.set({
-        [LSToken]: this.options
+        [LSToken]: SETTINGS
       })
     },
 
@@ -46,7 +20,7 @@
       }
       if (ls && ls.length) {
         ls.forEach(opt => {
-          const option = this.options.find(_opt => opt.id === _opt.id)
+          const option = SETTINGS.find(_opt => opt.id === _opt.id)
           if (option) {
             option.value = opt.value
           }
@@ -77,11 +51,11 @@
         return
       }
       optionsElement.innerHTML =
-        this.options.map(option => `<div>` + this.makeInput(option) + `</div>`).join('')
+        SETTINGS.map(option => `<div>` + this.makeInput(option) + `</div>`).join('')
     },
 
     setOptionsListeners: function () {
-      this.options.forEach(option => {
+      SETTINGS.forEach(option => {
         const element = document.getElementById(option.id)
         if (!element) {
           console.warn(`vk_markup_crash: options element not found (${option.id})`)

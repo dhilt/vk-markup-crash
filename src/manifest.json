@@ -1,7 +1,7 @@
 {
   "name": "VK markup crush",
   "short_name": "VK re-design",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Improve VK design",
   "icons": {
     "48": "vk-markup-crush-icon48.png",
@@ -16,6 +16,7 @@
       ],
       "js": [
       	"rules.js",
+        "settings.js",
         "contentscript.js"
       ],
       "run_at": "document_start",

@@ -1,6 +1,8 @@
 (() => {
 
   const LSToken = 'vk_markup_crash_options'
+  const SETTINGS = VK_MARKUP_CRASH_SETTINGS
+  const RULES = VK_MARKUP_CRASH_RULES
 
   const vk_markup_crash = {
 
@@ -8,10 +10,7 @@
       return new Promise(resolve =>
         chrome.storage.local.get(LSToken, (items) => {
           const storageOptions = items[LSToken]
-          if (!storageOptions) {
-            return
-          }
-          resolve(storageOptions)
+          resolve(storageOptions || SETTINGS)
         })
       )
     },
