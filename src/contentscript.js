@@ -1,15 +1,13 @@
 (() => {
 
-  const LSToken = 'vk_markup_crash_options'
-  const SETTINGS = VK_MARKUP_CRASH_SETTINGS
-  const RULES = VK_MARKUP_CRASH_RULES
+  const { SETTINGS, RULES, CONFIG: { LS_TOKEN } } = SHARED
 
   const vk_markup_crash = {
 
     getStorageDataAsync: function (callback) {
       return new Promise(resolve =>
-        chrome.storage.local.get(LSToken, (items) => {
-          const storageOptions = items[LSToken]
+        chrome.storage.local.get(LS_TOKEN, (items) => {
+          const storageOptions = items[LS_TOKEN]
           resolve(storageOptions || SETTINGS)
         })
       )

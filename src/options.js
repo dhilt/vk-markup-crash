@@ -1,22 +1,21 @@
 (() => {
 
+  const { SETTINGS, CONFIG: { LS_TOKEN } } = SHARED
   const LS = localStorage
-  const LSToken = 'vk_markup_crash_options'
-  const SETTINGS = VK_MARKUP_CRASH_SETTINGS
 
   const vk_markup_crash_options = {
 
     saveOptions: function () {
-      LS[LSToken] = JSON.stringify(SETTINGS)
+      LS[LS_TOKEN] = JSON.stringify(SETTINGS)
       chrome.storage.local.set({
-        [LSToken]: SETTINGS
+        [LS_TOKEN]: SETTINGS
       })
     },
 
     initializeOptionList: function () {
       let ls
-      if (LS[LSToken]) {
-        ls = JSON.parse(LS[LSToken])
+      if (LS[LS_TOKEN]) {
+        ls = JSON.parse(LS[LS_TOKEN])
       }
       if (ls && ls.length) {
         ls.forEach(opt => {
