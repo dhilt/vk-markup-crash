@@ -1,51 +1,55 @@
 (() => {
 
-  const { SETTINGS, RULES, CONFIG: { LS_TOKEN } } = SHARED
+  class VK_MARKUP_CRASH {
 
-  const vk_markup_crash = {
+    constructor({ SETTINGS, RULES, CONFIG: { LS_TOKEN } }) {
+      this.settings = SETTINGS
+      this.rules = RULES
+      this.lsToken = LS_TOKEN
+    }
 
-    getStorageDataAsync: function (callback) {
+    getStorageDataAsync(callback) {
       return new Promise(resolve =>
-        chrome.storage.local.get(LS_TOKEN, (items) => {
-          const storageOptions = items[LS_TOKEN]
-          resolve(storageOptions || SETTINGS)
+        chrome.storage.local.get(this.lsToken, (items) => {
+          const storageOptions = items[this.lsToken]
+          resolve(storageOptions || this.settings)
         })
       )
-    },
+    }
 
-    processStorageOptions: function (options) {
+    processStorageOptions(options) {
       if (options) {
         if (this.getOption(options, 'header')) {
           this.processHeader()
         }
         if (this.getOption(options, 'ads')) {
-          this.addCss(RULES.ADDS)
+          this.addCss(this.rules.ADDS)
         }
         if (this.getOption(options, 'round_icons')) {
-          this.addCss(RULES.ROUND_ICONS)
+          this.addCss(this.rules.ROUND_ICONS)
         }
         if (this.getOption(options, 'wide_layout')) {
-          this.addCss(RULES.WIDE_LAYOUT)
+          this.addCss(this.rules.WIDE_LAYOUT)
         }
         if (this.getOption(options, 'margins_and_paddings')) {
-          this.addCss(RULES.MARGINS_AND_PADDINGS)
+          this.addCss(this.rules.MARGINS_AND_PADDINGS)
         }
       }
-    },
+    }
 
-    getOption: function (options, token) {
+    getOption(options, token) {
       const option = options.find(option => option.id === token)
       return option && option.value
-    },
+    }
 
-    addCss: function (rule) {
+    addCss(rule) {
       const css = document.createElement('style')
       css.type = 'text/css'
       css.appendChild(document.createTextNode(rule));
       (document.head || document.documentElement).appendChild(css)
-    },
+    }
 
-    processHeader: function () {
+    processHeader() {
       let isHeader = true;
       this.timerId = setInterval(() => {
         var header = document.getElementById('page_header_cont')
@@ -64,15 +68,16 @@
           }
         }
       }, 75)
-    },
+    }
 
-    run: function () {
+    run() {
       this.getStorageDataAsync().then(
         this.processStorageOptions.bind(this)
       )
     }
   }
 
+  const vk_markup_crash = new VK_MARKUP_CRASH(SHARED)
   vk_markup_crash.run()
 
 })()
