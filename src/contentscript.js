@@ -17,26 +17,33 @@
     }
 
     processStorageOptions(options) {
-      if (this.getOption(options, 'header')) {
+      if (this.getOption(options, 'HEADER')) {
         this.processHeader()
       }
-      if (this.getOption(options, 'ads')) {
+      if (this.getOption(options, 'ADS')) {
         this.addCss(this.rules.ADDS)
       }
-      if (this.getOption(options, 'round_icons')) {
+      if (this.getOption(options, 'ROUND_ICONS')) {
         this.addCss(this.rules.ROUND_ICONS)
       }
-      if (this.getOption(options, 'wide_layout')) {
+      if (this.getOption(options, 'WIDE_LAYOUT')) {
         this.addCss(this.rules.WIDE_LAYOUT)
       }
-      if (this.getOption(options, 'margins_and_paddings')) {
+      if (this.getOption(options, 'MARGINS_AND_PADDINGS')) {
         this.addCss(this.rules.MARGINS_AND_PADDINGS)
       }
     }
 
     getOption(options, token) {
       const option = options.find(option => option.id === token)
-      return option && option.value
+      if (option && typeof option.value === 'boolean') {
+        return option.value
+      }
+      const defaultOpt = this.settings.find(setting => setting.id === token)
+      if (defaultOpt && typeof defaultOpt.value === 'boolean') {
+        return defaultOpt.value
+      }
+      return false
     }
 
     addCss(rule) {
