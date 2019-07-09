@@ -52,24 +52,27 @@
       if (!optionsElement) {
         return
       }
-      optionsElement.innerHTML =
-        this.settings.map(option => `<div>` + this.makeInput(option) + `</div>`).join('')
+      optionsElement.innerHTML = this.settings
+        .filter(option => !option.hidden)
+        .map(option => `<div>` + this.makeInput(option) + `</div>`).join('')
     }
 
     setOptionsListeners() {
-      this.settings.forEach(option => {
-        const element = document.getElementById(option.id)
-        if (!element) {
-          console.warn(`vk_markup_crash: options element not found (${option.id})`)
-          return
-        }
-        element.addEventListener('click', () => {
-          if (option.type === 'checkbox') {
-            option.value = !option.value
+      this.settings
+        .filter(option => !option.hidden)
+        .forEach(option => {
+          const element = document.getElementById(option.id)
+          if (!element) {
+            console.warn(`vk_markup_crash: options element not found (${option.id})`)
+            return
           }
-          this.saveOptions()
+          element.addEventListener('click', () => {
+            if (option.type === 'checkbox') {
+              option.value = !option.value
+            }
+            this.saveOptions()
+          })
         })
-      })
     }
 
     run() {
