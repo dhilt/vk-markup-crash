@@ -1,60 +1,63 @@
 (() => {
 
-  const { SETTINGS, CONFIG: { LS_TOKEN } } = SHARED
-  const LS = localStorage
+  class VK_MARKUP_CRASH_OPTIONS {
 
-  const vk_markup_crash_options = {
+    constructor({ SETTINGS, CONFIG: { LS_TOKEN } }, localStorage) {
+      this.settings = SETTINGS
+      this.lsToken = LS_TOKEN
+      this.LS = localStorage
+    }
 
-    saveOptions: function () {
-      LS[LS_TOKEN] = JSON.stringify(SETTINGS)
+    saveOptions() {
+      this.LS[this.lsToken] = JSON.stringify(this.settings)
       chrome.storage.local.set({
-        [LS_TOKEN]: SETTINGS
+        [this.lsToken]: this.settings
       })
-    },
+    }
 
-    initializeOptionList: function () {
+    initializeOptionList() {
       let ls
-      if (LS[LS_TOKEN]) {
-        ls = JSON.parse(LS[LS_TOKEN])
+      if (this.LS[this.lsToken]) {
+        ls = JSON.parse(this.LS[this.lsToken])
       }
       if (ls && ls.length) {
         ls.forEach(opt => {
-          const option = SETTINGS.find(_opt => opt.id === _opt.id)
+          const option = this.settings.find(_opt => opt.id === _opt.id)
           if (option) {
             option.value = opt.value
           }
         })
       }
       this.saveOptions();
-    },
+    }
 
-    makeCheckbox: function (option) {
+    makeCheckbox(option) {
       return `
     	<input type="checkbox" value="1"
     		${option.value ? 'checked' : ''} 
     		name="${option.id}"
     		id="${option.id}" />
     	<span> - ${option.text}</span>`
-    },
+    }
 
-    makeInput: function (option) {
+    makeInput(option) {
       switch (option.type) {
         default:
           return this.makeCheckbox(option)
       }
-    },
+    }
 
-    setOptionsHTML: function () {
+    setOptionsHTML() {
       const optionsElement = document.getElementById('options')
       if (!optionsElement) {
         return
       }
       optionsElement.innerHTML =
-        SETTINGS.map(option => `<div>` + this.makeInput(option) + `</div>`).join('')
-    },
+        this.settings.map(option => `<div>` + this.makeInput(option) + `</div>`).join('')
+    }
 
-    setOptionsListeners: function () {
-      SETTINGS.forEach(option => {
+    setOptionsListeners() {
+      this.settings.forEach(option => {
         const element = document.getElementById(option.id)
         if (!element) {
           console.warn(`vk_markup_crash: options element not found (${option.id})`)
@@ -67,9 +70,9 @@
           this.saveOptions()
         })
       })
-    },
+    }
 
-    run: function () {
+    run() {
       this.initializeOptionList()
       this.setOptionsHTML()
       this.setOptionsListeners()
@@ -77,6 +80,7 @@
 
   }
 
+  const vk_markup_crash_options = new VK_MARKUP_CRASH_OPTIONS(SHARED, localStorage)
   vk_markup_crash_options.run()
 
 })()
