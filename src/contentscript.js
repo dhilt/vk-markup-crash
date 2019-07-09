@@ -8,32 +8,29 @@
       this.lsToken = LS_TOKEN
     }
 
-    getStorageDataAsync(callback) {
+    getStorageDataAsync() {
       return new Promise(resolve =>
-        chrome.storage.local.get(this.lsToken, (items) => {
-          const storageOptions = items[this.lsToken]
-          resolve(storageOptions || this.settings)
-        })
+        chrome.storage.local.get(this.lsToken, items =>
+          resolve(items[this.lsToken] || this.settings)
+        )
       )
     }
 
     processStorageOptions(options) {
-      if (options) {
-        if (this.getOption(options, 'header')) {
-          this.processHeader()
-        }
-        if (this.getOption(options, 'ads')) {
-          this.addCss(this.rules.ADDS)
-        }
-        if (this.getOption(options, 'round_icons')) {
-          this.addCss(this.rules.ROUND_ICONS)
-        }
-        if (this.getOption(options, 'wide_layout')) {
-          this.addCss(this.rules.WIDE_LAYOUT)
-        }
-        if (this.getOption(options, 'margins_and_paddings')) {
-          this.addCss(this.rules.MARGINS_AND_PADDINGS)
-        }
+      if (this.getOption(options, 'header')) {
+        this.processHeader()
+      }
+      if (this.getOption(options, 'ads')) {
+        this.addCss(this.rules.ADDS)
+      }
+      if (this.getOption(options, 'round_icons')) {
+        this.addCss(this.rules.ROUND_ICONS)
+      }
+      if (this.getOption(options, 'wide_layout')) {
+        this.addCss(this.rules.WIDE_LAYOUT)
+      }
+      if (this.getOption(options, 'margins_and_paddings')) {
+        this.addCss(this.rules.MARGINS_AND_PADDINGS)
       }
     }
 
@@ -71,8 +68,8 @@
     }
 
     run() {
-      this.getStorageDataAsync().then(
-        this.processStorageOptions.bind(this)
+      this.getStorageDataAsync().then(result =>
+        result && this.processStorageOptions(result)
       )
     }
   }
