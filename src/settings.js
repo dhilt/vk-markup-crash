@@ -23,4 +23,10 @@ const VK_MARKUP_CRASH_SETTINGS = [{
   type: 'checkbox',
   value: true,
   text: 'reduce margins and paddings'
+}, {
+  id: 'NEW_COMMENT_ICON',
+  type: 'checkbox',
+  value: true,
+  text: 'hide my icon in new comment suggestion',
+  // hidden: true
 }];
