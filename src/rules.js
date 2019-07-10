@@ -110,4 +110,17 @@ const VK_MARKUP_CRASH_RULES = {
   position: inherit !important;
 }
 `,
+  NEW_COMMENT_ICON: `
+.reply_form_user_image img.post_field_user_image, 
+.reply_form_user_image img.post_field_choose_image,
+.post_field_user_link img.post_field_user_image {
+  opacity: 0 !important;
+}
+.addpost_opt {
+  opacity: 0.3 !important;
+}
+.addpost_opt:hover {
+  opacity: 1 !important;
+}
+`
 };

@@ -32,6 +32,9 @@
       if (this.getOption(options, 'MARGINS_AND_PADDINGS')) {
         this.addCss(this.rules.MARGINS_AND_PADDINGS)
       }
+      if (this.getOption(options, 'NEW_COMMENT_ICON')) {
+        this.addCss(this.rules.NEW_COMMENT_ICON)
+      }
     }
 
     getOption(options, token) {
