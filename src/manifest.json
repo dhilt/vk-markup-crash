@@ -1,7 +1,7 @@
 {
   "name": "VK markup crush",
   "short_name": "VK re-design",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Improve VK design",
   "icons": {
     "48": "vk-markup-crush-icon48.png",
