@@ -1,6 +1,6 @@
 const VK_MARKUP_CRASH_RULES = {
     ADDS: `
-._ads_block_data_w, .ads_left, .ads_ads_box {
+._ads_block_data_w, .ads_left, .ads_ads_box, #ads_left {
     display: none !important;
 }
 #feed_recommends {
