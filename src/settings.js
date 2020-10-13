@@ -14,10 +14,19 @@ const VK_MARKUP_CRASH_SETTINGS = [{
   value: true,
   text: 'abandon round icons'
 }, {
-  id: 'WIDE_LAYOUT',
-  type: 'checkbox',
-  value: true,
-  text: 'make layout wider'
+  id: 'WIDER_LAYOUT',
+  type: 'group',
+  value: [{
+    id: 'ENABLED',
+    type: 'checkbox',
+    value: true,
+    text: 'make layout wider'
+  }, {
+    id: 'WIDTH',
+    type: 'select',
+    values: ['xl', 'xxl', 'xxxl'],
+    value: 'xl'
+  }]
 }, {
   id: 'MARGINS_AND_PADDINGS',
   type: 'checkbox',
@@ -29,4 +38,9 @@ const VK_MARKUP_CRASH_SETTINGS = [{
   value: true,
   text: 'hide my icon in new comment suggestion',
   // hidden: true
+}, {
+  id: 'STORIES_CLIPS_RECOMMENDATIONS',
+  type: 'checkbox',
+  value: true,
+  text: 'hide stories, clips, recommendations'
 }];

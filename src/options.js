@@ -40,11 +40,43 @@
     	<span> - ${option.text}</span>`
     }
 
+    makeSelect(option) {
+      const options = option.values.map(item => `
+        <option
+          value="${item}"
+          ${option.value === item ? 'selected' : ''}
+        >${item}</option>
+      `).join('');
+      return `
+    	<select
+    		name="${option.id}"
+        id="${option.id}"
+      >${options}</select>`
+    }
+
     makeInput(option) {
       switch (option.type) {
-        default:
+        case 'select':
+          return this.makeSelect(option)
+        case 'checkbox':
           return this.makeCheckbox(option)
       }
+    }
+
+    makeInputs(inputs, group = null) {
+      return inputs
+        .filter(input => !input.hidden)
+        .map(input => input.type === 'group'
+          ? `<div class="group">` +
+            this.makeInputs(input.value, input) +
+            `</div>`
+          : `<div class="item">`+
+            this.makeInput(group
+              ? { ...input, id: group.id + '_' + input.id }
+              : input
+            ) +
+            `</div>`
+        ).join('')
     }
 
     setOptionsHTML() {
@@ -52,33 +84,45 @@
       if (!optionsElement) {
         return
       }
-      optionsElement.innerHTML = this.settings
-        .filter(option => !option.hidden)
-        .map(option => `<div>` + this.makeInput(option) + `</div>`).join('')
+      optionsElement.innerHTML = this.makeInputs(this.settings)
     }
 
-    setOptionsListeners() {
-      this.settings
+    setOptionListener(element, option) {
+      if (option.type === 'checkbox') {
+        element.addEventListener('click', () => {
+          option.value = !option.value
+          this.saveOptions()
+        })
+      } else if (option.type === 'select') {
+        element.addEventListener('change', () => {
+          option.value = element.value
+          this.saveOptions()
+        })
+      }
+    }
+
+    setOptionsListeners(settings, group = null) {
+      settings
         .filter(option => !option.hidden)
         .forEach(option => {
-          const element = document.getElementById(option.id)
-          if (!element) {
-            console.warn(`vk_markup_crash: options element not found (${option.id})`)
+          if (option.type === 'group') {
+            this.setOptionsListeners(option.value, option)
             return
           }
-          element.addEventListener('click', () => {
-            if (option.type === 'checkbox') {
-              option.value = !option.value
-            }
-            this.saveOptions()
-          })
+          const optionId = (group ? group.id + '_' : '') + option.id
+          const element = document.getElementById(optionId)
+          if (!element) {
+            console.warn(`vk_markup_crash: options element not found (${optionId})`)
+            return
+          }
+          this.setOptionListener(element, option)
         })
     }
 
     run() {
       this.initializeOptionList()
       this.setOptionsHTML()
-      this.setOptionsListeners()
+      this.setOptionsListeners(this.settings)
     }
 
   }
