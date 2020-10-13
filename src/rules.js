@@ -43,12 +43,37 @@ const VK_MARKUP_CRASH_RULES = {
     border-radius: 0 !important;
 }
 `,
-  WIDER_LAYOUT: `
+  WIDER_LAYOUT_XL: `
 #page_layout {
-  width: 1160px !important;
+  width: 1055px !important;
 }
 #page_body {
-  width: 995px !important;
+  width: 895px !important;
+}
+.page_post_sized_thumbs {
+  margin: auto !important;
+}
+`,
+  WIDER_LAYOUT_XXL: `
+#page_layout {
+  width: 1190px !important;
+}
+#page_body {
+  width: 1025px !important;
+}
+.page_post_sized_thumbs {
+  margin: auto !important;
+}
+`,
+  WIDER_LAYOUT_XXXL: `
+#page_layout {
+  width: 1300px !important;
+}
+#page_body {
+  width: 1140px !important;
+}
+.page_post_sized_thumbs {
+  margin: auto !important;
 }
 `,
   MARGINS_AND_PADDINGS: `
