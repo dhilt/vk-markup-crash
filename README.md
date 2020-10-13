@@ -11,5 +11,6 @@ The list of current (0.1.3) features:
 - some blocks are erased (NO ADS!),
 - round icons are banned,
 - new comment suggestions have no user icon
+- the feed container could be expanded
 
-dhilt, 2019
+dhilt, 2020
