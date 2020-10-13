@@ -1,9 +1,11 @@
 const VK_MARKUP_CRASH_RULES = {
-    ADDS: `
+    ADS: `
 ._ads_block_data_w, .ads_left, .ads_ads_box, #ads_left {
     display: none !important;
 }
-#feed_recommends {
+`,
+    STORIES_CLIPS_RECOMMENDATIONS: `
+#feed_recommends, .stories_feed_wrap, .VideosFeedTitle, .ShortVideoFeedBlock {
   display: none !important;
 }
 `,
@@ -41,7 +43,7 @@ const VK_MARKUP_CRASH_RULES = {
     border-radius: 0 !important;
 }
 `,
-  WIDE_LAYOUT: `
+  WIDER_LAYOUT: `
 #page_layout {
   width: 1160px !important;
 }
